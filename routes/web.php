@@ -12,8 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main.register');
 });
+
 
 
 Route::get('/todo', 'WebController\ActivityController@index');
@@ -23,3 +24,6 @@ Route::post('/todo/add', 'WebController\ActivityController@AddTodo');
 Route::get('/todo/{id}/edit', 'WebController\ActivityController@show');
 
 Route::post('/todo/{id}/edit', 'WebController\ActivityController@EditTodo');
+
+Route::post('/login', 'WebController\AuthController@login');
+Route::post('/register', 'WebController\AuthController@register');
