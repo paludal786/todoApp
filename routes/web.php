@@ -15,13 +15,13 @@
 //     return view('activities.index');
 // })->middleware('checkRole:qaz');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 
-Route::get('/todo', 'WebController\ActivityController@index');
+Route::get('/', 'WebController\ActivityController@index');
 Route::get('/todo/add-form', 'WebController\ActivityController@AddTodoForm');
 Route::post('/todo/add', 'WebController\ActivityController@AddTodo');
 
@@ -31,3 +31,7 @@ Route::post('/todo/{id}/edit', 'WebController\ActivityController@EditTodo');
 
 Route::post('/login', 'WebController\AuthController@login');
 Route::post('/register', 'WebController\AuthController@register');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

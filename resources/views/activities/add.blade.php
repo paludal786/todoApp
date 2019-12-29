@@ -3,7 +3,7 @@
 
     <div class="row" style="margin:20px">
         <div class="col-md-12 form-group">
-            <a href="/todo"> <button class="pull-right btn btn-primary"> Go Back </button></a>
+            <a href="/"> <button class="pull-right btn btn-primary"> Go Back </button></a>
         </div>
     </div>
 

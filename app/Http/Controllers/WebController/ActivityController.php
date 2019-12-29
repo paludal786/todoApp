@@ -51,7 +51,7 @@ class ActivityController extends Controller
 
         $act->save();
 
-        return redirect('/todo')->with('Your Todo List Has Been Inserted', 200);
+        return redirect('/')->with('Your Todo List Has Been Inserted', 200);
     }
 
     public function EditTodo(Request $request, $id)
@@ -70,6 +70,6 @@ class ActivityController extends Controller
         $edit->time = $request->time;
         $edit->save();
 
-        return redirect('/todo')->with('Your Todo List Has Been Updated !..', 200);
+        return redirect('/')->with('Your Todo List Has Been Updated !..', 200);
     }
 }
