@@ -6,7 +6,7 @@
             <a href="/todo/add-form"> <button class="pull-right btn btn-primary"> Add Todo </button></a>
         </div>
     </div>
-      <h2><center>{{$title}}</center></h2>
+      <h2><center>{{$title ?? null}}</center></h2>
 
     @if (count($activities) > 0)
 

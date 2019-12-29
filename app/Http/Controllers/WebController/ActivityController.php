@@ -13,15 +13,13 @@ class ActivityController extends Controller
 {
     public function index()
     {
-        $title = 'My Todo List';
-        $activities = Activity::where('time', '>=', Carbon::now())
+        $title = 'My Todo Lists';
+        $activities = Activity::where('time', '<=', Carbon::now())
             ->orderBy('created_at', 'desc')->paginate(5);
-
         $data = array(
             'title' => $title,
             'activities' => $activities
         );
-
         return view('activities.index')->with($data);
     }
     public function AddTodoForm()

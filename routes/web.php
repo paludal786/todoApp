@@ -11,8 +11,12 @@
 |
 */
 
+// Route::get('/', function () {
+//     return view('activities.index');
+// })->middleware('checkRole:qaz');
+
 Route::get('/', function () {
-    return view('main.register');
+    return view('welcome');
 });
 
 
