@@ -2,21 +2,6 @@
 @section('content')
 
 
-@guest
-    @if (Auth::user())
-
-    <div class="row" style="margin:20px">
-        <div class="col-md-9 form-group">
-            <a href="/todo/add-form"> <button class="pull-right btn btn-primary"> Add Todo </button></a>
-        </div>
-    </div>
-    @else
-
-    @endif
-
-@endguest
-
-
       <h2><center>{{$title ?? null}}</center></h2>
 
     @if (count($activities) > 0)
@@ -37,21 +22,27 @@
                 <tbody>
                     @foreach ($activities as $item)
                     <tr>
-                        <td>{{ $item->task }}</td>
+                        @guest
+                          @if (Route::has('register'))
+
+                          <td>{{ $item->task }}</td>
                         <td>{{ date('d-m-y  h:i A', strtotime($item->time)) }}</td>
                         <td>
                             <a href="/todo/{{ $item->id }}/done"><button class="btn btn-info btn-xs">Completed</button></a>
                             <a href="/todo/{{ $item->id }}/edit">
-                                <button class="btn btn-info btn-xs" >
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button>
-                            </a>
-                            <a href="#">
-                                <button class="btn btn-warning btn-xs">
-                                    <span class="glyphicon glyphicon-gift"></span>
-                                </button>
-                            </a>
+                            <button class="btn btn-info btn-xs" >
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                        </a>
+                        <a href="#">
+                            <button class="btn btn-warning btn-xs">
+                                <span class="glyphicon glyphicon-gift"></span>
+                            </button>
+                        </a>
                         </td>
+@endif
+@endguest
+
                     </tr>
                     @endforeach
                 </tbody>
