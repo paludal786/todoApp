@@ -84,4 +84,12 @@ class ActivityController extends Controller
 
         return redirect('/')->with('Your Todo List Has Been Updated !..', 200);
     }
+
+    public function done(Request $request, $id)
+    {
+        // dd($id);
+        $d = Activity::findOrFail($id);
+        $d->delete();
+        return redirect('/')->with('Your Todo Has Been Deleted !..', 200);
+    }
 }

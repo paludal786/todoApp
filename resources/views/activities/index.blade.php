@@ -48,7 +48,15 @@
         {{ $activities->links() }}
         @else
 
-        <div class="row"><marquee>Please Login To See Your Todo List</marquee></div>
+
+
+        @if(Auth::user() && $activities)
+        <div class="row"><marquee>Your TODO List is Empty</marquee></div>
+        @else
+        <div class="row"><marquee>Please Login To Create Your TODO List</marquee></div>
+        @endif
+
+
         @endif
 
 

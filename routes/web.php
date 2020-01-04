@@ -32,6 +32,8 @@ Route::post('/todo/{id}/edit', 'WebController\ActivityController@EditTodo');
 Route::post('/login', 'WebController\AuthController@login');
 Route::post('/register', 'WebController\AuthController@register');
 
+Route::get('/todo/{id}/done', 'WebController\ActivityController@done');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
