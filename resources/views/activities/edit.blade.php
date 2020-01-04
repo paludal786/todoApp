@@ -10,18 +10,17 @@
 
 
         <div class="row">
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-md-12">
+            <div class="col-md-3"></div>
+                    <div class="col-md-9">
                             <form action="/todo/{{$editActivity->id}}/edit" method="POST" >
                                 {{ csrf_field() }}
                                 <div class="col-md-3">
                                       <label> Enter Your Task </label>
-                                <textarea class="form-control" name="task"  type="text">{{ $editActivity->task }} </textarea>
+                                <textarea class="form-control" name="task"  type="text"> {{ $editActivity->task }} </textarea>
                                 </div>
                                 <div class="col-md-3">
                                        <label>Select Your Time</label>
-                                <input class="form-control" name="time" value="{{ date($editActivity->time)  }}" type="datetime-local"/>
+                                <input class="form-control" name="time" value="{{ $editActivity->time  }}" type="datetime-local"/>
                                 </div>
                                     <div class="col-md-3">
                                         <label></label>
@@ -29,8 +28,7 @@
                                     </div>
                             </form>
                     </div>
-                </div>
-            </div>
+
         </div>
 
 @endsection

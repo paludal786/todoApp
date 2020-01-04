@@ -7,6 +7,7 @@ use App\Models\Activity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class ActivityController extends Controller
@@ -14,12 +15,16 @@ class ActivityController extends Controller
     public function index()
     {
         $title = 'My Todo Lists';
-        $activities = Activity::where('time', '<=', Carbon::now())
-            ->orderBy('created_at', 'desc')->paginate(5);
+        $activities = [];
+        if (Auth::user()) {
+            $activities = Activity::where('user_id', '=', Auth::user()->id)
+                ->orderBy('created_at', 'desc')->paginate(5);
+        }
         $data = array(
             'title' => $title,
             'activities' => $activities
         );
+
         return view('activities.index')->with($data);
     }
     public function AddTodoForm()
@@ -30,25 +35,29 @@ class ActivityController extends Controller
     public function show($id)
     {
         $activity = Activity::find($id);
+        $activity['time'] = Carbon::parse($activity->time)->format('Y-m-d\TH:i');
         return view('activities.edit')->with('editActivity', $activity);
     }
 
     public function AddTodo(Request $request)
     {
         $validator =  Validator::make($request->all(), [
-            'task' => 'required|string',
+            'task' => 'required|string|min:5|max:255',
             'time' => 'required|date'
         ]);
 
         if ($validator->fails()) {
-            return response($validator->errors()->first(), 422);
+            // return response($validator->errors()->first(), 422);
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
+
+
 
         $act = new Activity();
 
         $act->task = $request->task;
         $act->time = $request->time;
-
+        $act->user_id = Auth::user()->id;
         $act->save();
 
         return redirect('/')->with('Your Todo List Has Been Inserted', 200);
@@ -57,13 +66,16 @@ class ActivityController extends Controller
     public function EditTodo(Request $request, $id)
     {
         $validator =  Validator::make($request->all(), [
-            'task' => 'required|string',
+            'task' => 'required|string|min:5|max:255',
             'time' => 'required|date'
         ]);
 
         if ($validator->fails()) {
-            return response($validator->errors()->first(), 422);
+            // return response($validator->errors()->first(), 422);
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
+
+
 
         $edit = Activity::find($id);
         $edit->task = $request->task;
