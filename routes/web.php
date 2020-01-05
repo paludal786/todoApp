@@ -18,22 +18,12 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
-
-
 Route::get('/', 'WebController\ActivityController@index');
-Route::get('/todo/add-form', 'WebController\ActivityController@AddTodoForm');
-Route::post('/todo/add', 'WebController\ActivityController@AddTodo');
 
-Route::get('/todo/{id}/edit', 'WebController\ActivityController@show');
 
-Route::post('/todo/{id}/edit', 'WebController\ActivityController@EditTodo');
 
 Route::post('/login', 'WebController\AuthController@login');
 Route::post('/register', 'WebController\AuthController@register');
-
-Route::get('/todo/{id}/done', 'WebController\ActivityController@done');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

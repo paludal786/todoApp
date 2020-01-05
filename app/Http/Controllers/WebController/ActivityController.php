@@ -32,7 +32,7 @@ class ActivityController extends Controller
         return view('activities.add');
     }
 
-    public function show($id)
+    public function listPerticular($id)
     {
         $activity = Activity::find($id);
         $activity['time'] = Carbon::parse($activity->time)->format('Y-m-d\TH:i');
@@ -87,7 +87,6 @@ class ActivityController extends Controller
 
     public function done(Request $request, $id)
     {
-        // dd($id);
         $d = Activity::findOrFail($id);
         $d->delete();
         return redirect('/')->with('Your Todo Has Been Deleted !..', 200);

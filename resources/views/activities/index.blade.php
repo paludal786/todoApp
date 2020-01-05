@@ -29,8 +29,8 @@
                           <td>{{ $item->task }}</td>
                         <td>{{ date('d-m-y  h:i A', strtotime($item->time)) }}</td>
                         <td>
-                            <a href="/todo/{{ $item->id }}/done"><button class="btn btn-primary btn-xs">Completed</button></a>
-                            <a href="/todo/{{ $item->id }}/edit">
+                            <a href="api/todo/{{ $item->id }}/done"><button class="btn btn-primary btn-xs">Completed</button></a>
+                            <a href="api/todo/{{ $item->id }}/edit">
                                 <button class="btn btn-info btn-xs">Edit</button>
                             </a>
                             <a href="#">
