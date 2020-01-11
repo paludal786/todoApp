@@ -20,7 +20,15 @@
 // });
 Route::get('/', 'WebController\ActivityController@index');
 
+Route::get('todo/add-form', 'WebController\ActivityController@AddTodoForm');
 
+Route::post('todo/add', 'WebController\ActivityController@AddTodo');
+
+Route::get('todo/{id}/edit', 'WebController\ActivityController@listPerticular');
+
+Route::post('todo/{id}/edit', 'WebController\ActivityController@EditTodo');
+
+Route::get('todo/{id}/done', 'WebController\ActivityController@done');
 
 Route::post('/login', 'WebController\AuthController@login');
 Route::post('/register', 'WebController\AuthController@register');

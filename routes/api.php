@@ -16,12 +16,3 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('todo/add-form', 'WebController\ActivityController@AddTodoForm');
-
-Route::post('todo/add', 'WebController\ActivityController@AddTodo');
-
-Route::get('todo/{id}/edit', 'WebController\ActivityController@listPerticular');
-
-Route::post('todo/{id}/edit', 'WebController\ActivityController@EditTodo');
-
-Route::get('todo/{id}/done', 'WebController\ActivityController@done');
