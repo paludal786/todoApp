@@ -22,7 +22,6 @@ Route::get('/', 'WebController\ActivityController@index');
 
 Route::get('todo/add-form', 'WebController\ActivityController@AddTodoForm');
 
-Route::post('todo/add', 'WebController\ActivityController@AddTodo');
 
 Route::get('todo/{id}/edit', 'WebController\ActivityController@listPerticular');
 

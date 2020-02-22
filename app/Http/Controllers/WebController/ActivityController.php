@@ -41,17 +41,20 @@ class ActivityController extends Controller
 
     public function AddTodo(Request $request)
     {
+
+        // try {
         $validator =  Validator::make($request->all(), [
             'task' => 'required|string|min:5|max:255',
             'time' => 'required|date'
         ]);
 
         if ($validator->fails()) {
-            // return response($validator->errors()->first(), 422);
-            return redirect()->back()->withErrors($validator)->withInput($request->all());
+            return response($validator->errors()->first(), 422);
+            // return $request;
+            // return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
 
-
+        return $request;
 
         $act = new Activity();
 
@@ -59,8 +62,10 @@ class ActivityController extends Controller
         $act->time = $request->time;
         $act->user_id = Auth::user()->id;
         $act->save();
-
         return redirect('/')->with('Your Todo List Has Been Inserted', 200);
+        // } catch (\Exception $e) {
+        //     return $e->getMessage();
+        // }
     }
 
     public function EditTodo(Request $request, $id)

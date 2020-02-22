@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-md-3"></div>
                     <div class="col-md-9">
-                            <form action="/todo/add" method="POST" >
+                            <form action="/api/todo/add" method="POST" >
                                 {{ csrf_field() }}
                                 <div class="col-sm-3">
                                       <label> Enter Your Task </label>
